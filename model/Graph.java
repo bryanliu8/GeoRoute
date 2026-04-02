@@ -1,29 +1,22 @@
-public class Graph{
-    //private List<Vertex> vertices; 
-    //private List<Edge> edges;
-    //private ArrayList<Edge>[] adjacencyList;
+import java.util.*;
 
-    /*
-    //adding vertex
-    public void addVertex(v : Vertex){
-    
+public class Graph {
+    private Map<Vertex, List<Edge>> adjacencyList;
+
+    public Graph() {
+        adjacencyList = new HashMap<>();
     }
-    //add an edge 
-    public void addEdge(e : Edge){
-    
+
+    public void addVertex(Vertex v) {
+        adjacencyList.putIfAbsent(v, new ArrayList<>());
     }
-    //remove an edge
-    public void removeEdge(e : Edge){
-    
+
+    public void addEdge(Vertex source, Vertex target, double capacity) {
+        Edge e = new Edge(source, target, capacity);
+        adjacencyList.get(source).add(e);
     }
-    //check whether edge exist
-    public boolean hasEdge(e : Edge){
-    
+
+    public List<Edge> getNeighbors(Vertex v) {
+        return adjacencyList.get(v);
     }
-    //print the adjacency matrix represent of graph
-    //!!only for testing, debuggin stage!!
-    public void printGraph(){
-    
-    }
-    */
 }

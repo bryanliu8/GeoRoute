@@ -4,6 +4,18 @@ class Vertex{
     private int y;
     private String label;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Vertex)) return false;
+        Vertex v = (Vertex) o;
+        return id == v.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(id);
+    }
     /* 
     public Vertex getCoordinate(){
 
