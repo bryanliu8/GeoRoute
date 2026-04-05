@@ -17,6 +17,16 @@ public class Graph {
     }
 
     public List<Edge> getNeighbors(Vertex v) {
-        return adjacencyList.get(v);
+        return adjacencyList.getOrDefault(v, new ArrayList<>());
     }
+
+    public boolean hasVertex(Vertex v){
+        return adjacencyList.containsKey(v);
+    }
+
+    //traversal DFS/BFS
+    /*public List<Vertex> findPath(Vertex start, Vertex end){
+
+    }
+    */
 }
