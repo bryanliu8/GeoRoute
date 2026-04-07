@@ -16,9 +16,12 @@ class Edge{
     }
 
     /*
-    public void updateFlow(f: double){
+    public void updateFlow(){
     }
 
+    public void getTravelTime(){
+    }
+    
     public double getCongestion(){
     }
     */

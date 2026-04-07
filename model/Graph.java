@@ -24,7 +24,7 @@ public class Graph {
         return adjacencyList.containsKey(v);
     }
 
-    //traversal DFS/BFS
+    //straight up Dijkstra
     /*public List<Vertex> findPath(Vertex start, Vertex end){
 
     }
