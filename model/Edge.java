@@ -14,17 +14,16 @@ class Edge{
         this.capacity = capacity;
         this.flow = 0;
     }
-
-    /*
+    public Vertex getTarget(Vertex source){
+        Vertex v = target; 
+        return v;
+    }
+    
     public void updateFlow(){
     }
 
     public void getTravelTime(){
     }
     
-    public double getCongestion(){
-    }
-    */
-
-
+    //public double getCongestion(){}
 }
