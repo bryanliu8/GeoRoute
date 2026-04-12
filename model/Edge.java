@@ -6,7 +6,7 @@ class Edge{
     private double flow;
     private double travelTime;
     //private double freeFlowTime, smoothedTravelTime;
-    //private double previousFlow, double;
+    //private double previousFlow;
 
     public Edge(Vertex source, Vertex target, double capacity) {
         this.source = source;
@@ -22,7 +22,9 @@ class Edge{
     public void updateFlow(){
     }
 
-    public void getTravelTime(){
+    public double getTravelTime(){
+        //flow capacity congestion
+
     }
     
     //public double getCongestion(){}
