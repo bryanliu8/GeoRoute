@@ -5,8 +5,9 @@ class Edge{
     private double capacity;
     private double flow;
     private double travelTime;
-    //private double freeFlowTime, smoothedTravelTime;
-    //private double previousFlow;
+    private double freeFlowTime;
+    private double smoothedTravelTime;
+    private double previousFlow;
 
     public Edge(Vertex source, Vertex target, double capacity) {
         this.source = source;
@@ -14,17 +15,19 @@ class Edge{
         this.capacity = capacity;
         this.flow = 0;
     }
-    public Vertex getTarget(Vertex source){
-        Vertex v = target; 
-        return v;
+    public Vertex getTarget(){
+        return target;
     }
     
-    public void updateFlow(){
+    public double updateFlow(double f){
+        previousFlow = flow; //keeping prev cap for congestion
+        flow += f; //cap needed in congestion
+        return flow;
     }
 
     public double getTravelTime(){
-        //flow capacity congestion
-
+        if ( capacity == 0) return Double.POSITIVE_INFINITY;
+        return freeFlowTime*( 1 + 0.15*Math.pow(flow/capacity,4));
     }
     
     //public double getCongestion(){}
