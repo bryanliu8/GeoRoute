@@ -28,6 +28,15 @@ public class Graph {
         return adjacencyList.keySet();
     }
 
+    public Edge getEdge(Vertex source, Vertex target){
+        for(Edge e : getNeighbors(source)){
+            if(e.getTarget().equals(target)){
+                return e;
+            }
+        }
+        return null;
+    }
+
     //straight up Dijkstra (inefficient) Leave alone for now
     public List<Vertex> findPath(Vertex start, Vertex end){
         // 1. Initialize
@@ -69,4 +78,15 @@ public class Graph {
         return path;
     }
 
+
+    //debug method
+    private void printStats(int iteration){
+        System.out.println("Iteration " + iteration);
+        for(Vertex v : getVertices()){
+            for(Edge e : getNeighbors(v)){
+                System.out.println(e.getSource() + " -> " + e.getTarget() + 
+                " | flow: " + e.getFlow() + " | time: " + e.getTravelTime());
+            }
+        }
+    }
 }
