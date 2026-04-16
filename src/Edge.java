@@ -1,3 +1,5 @@
+
+
 class Edge{
     //private int id;
     private Vertex source;
@@ -18,6 +20,12 @@ class Edge{
     public Vertex getTarget(){
         return target;
     }
+    public Vertex getSource(){
+        return source;
+    }
+    public double getFlow(){
+        return flow;
+    }
     
     public double updateFlow(double f){
         previousFlow = flow; //keeping prev cap for congestion
@@ -30,5 +38,7 @@ class Edge{
         return freeFlowTime*( 1 + 0.15*Math.pow(flow/capacity,4));
     }
     
+    //public double resetFlow(){}
     //public double getCongestion(){}
+    
 }

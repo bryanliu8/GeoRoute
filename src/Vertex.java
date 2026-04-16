@@ -1,3 +1,5 @@
+
+
 class Vertex{
     private int id;
     private int x;
@@ -24,6 +26,6 @@ class Vertex{
     public boolean isHotspot(){
         return false;
     }
-
     */
+    
 }
