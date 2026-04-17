@@ -6,14 +6,20 @@ public class Demand{
     private double amount;
 
     //constructor
-    public Demand(){
-        this.source = source;
-        this.target = target;
-        this.amount = amount;
+    public Demand(Vertex source, Vertex target ,double amount){
+       this.source = source;
+       this.target = target;
+       this.amount = amount;
     }
 
     //getters
-    public double getDemand(){
+    public double getAmount(){
         return amount;
+    }
+    public Vertex getSource(){
+        return source;
+    }
+    public Vertex getTarget(){
+        return target;
     }
 }

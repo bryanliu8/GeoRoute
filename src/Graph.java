@@ -79,16 +79,5 @@ public class Graph {
         Collections.reverse(path);
         return path;
     }
-
-
-    //debug method
-    private void printStats(int iteration){
-        System.out.println("Iteration " + iteration);
-        for(Vertex v : getVertices()){
-            for(Edge e : getNeighbors(v)){
-                System.out.println(e.getSource() + " -> " + e.getTarget() + 
-                " | flow: " + e.getFlow() + " | time: " + e.getTravelTime());
-            }
-        }
-    }
+    
 }

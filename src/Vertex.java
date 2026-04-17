@@ -6,6 +6,18 @@ class Vertex{
     private int y;
     private String label;
 
+    public Vertex(int id, int x, int y, String label){
+        this.id = id;
+        this.x = x;
+        this.y = y;
+        this.label = label;
+    }
+
+    @Override //readable printStats
+    public String toString(){
+        return label;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

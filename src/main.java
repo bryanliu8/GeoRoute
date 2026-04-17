@@ -1,0 +1,31 @@
+import java.util.*;
+public class main {
+    public static void main(String[] args) {
+
+        Graph graph = new Graph();
+
+        Vertex A = new Vertex(1, 0, 0, "A");
+        Vertex B = new Vertex(2, 0, 0, "B");
+        Vertex C = new Vertex(3, 0, 0, "C");
+        Vertex D = new Vertex(4, 0, 0, "D");
+
+        graph.addVertex(A);
+        graph.addVertex(B);
+        graph.addVertex(C);
+        graph.addVertex(D);
+
+        //Add edges (simple example)
+        graph.addEdge(A, B, 10);
+        graph.addEdge(B, C, 10);
+        graph.addEdge(A, D, 5);
+        graph.addEdge(D, C, 5);
+
+        List<Demand> demands = new ArrayList<>();
+        demands.add(new Demand(A, C, 3.0));
+
+        FlowAllocator allocator = new FlowAllocator(graph);
+
+        //Run simulation
+        allocator.runSimulation(demands, 3);
+    }
+}

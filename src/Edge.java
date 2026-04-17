@@ -38,7 +38,9 @@ class Edge{
         return freeFlowTime*( 1 + 0.15*Math.pow(flow/capacity,4));
     }
     
-    //public double resetFlow(){}
+    public void resetFlow(){
+        flow = 0.0;
+    }
     //public double getCongestion(){}
     
 }
