@@ -39,12 +39,12 @@ public class Graph {
         return null;
     }
 
-    //straight up Dijkstra (inefficient) Leave alone for now
+    //straight up Dijkstra Goal: 2-3 paths
     public List<Vertex> findPath(Vertex start, Vertex end){
-        // 1. Initialize
+        //Initialize
         HashMap<Vertex, Double> dist = new HashMap<>();
         HashMap<Vertex, Vertex> prev = new HashMap<>();
-       //  for (each vertex v)
+       //for (each vertex v)
        for(Vertex v : getVertices()){
             dist.put(v, Double.POSITIVE_INFINITY); //dist[v] = infinity 
        }
