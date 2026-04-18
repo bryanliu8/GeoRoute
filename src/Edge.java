@@ -16,6 +16,7 @@ class Edge{
         this.target = target;
         this.capacity = capacity;
         this.flow = 0;
+        this.freeFlowTime = 1.0;
     }
     public Vertex getTarget(){
         return target;

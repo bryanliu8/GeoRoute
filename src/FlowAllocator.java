@@ -56,24 +56,18 @@ public class FlowAllocator{
 
     // Main simulation entry
     public void runSimulation(List<Demand> demands, int iterations) {
-
         for (int t = 0; t < iterations; t++) {
-
             // 1. Reset or prepare state (optional for now)
-            resetFlows();
-
+            //resetFlows();
             // 2. Assign demand based on demands
             for (Demand d : demands) {
                 assignDemand(d);
             }
-
-            // 3. (Optional) Update edge metrics / smoothing
+            // 3. (Optional) Update edge metrics  smoothing
             //updateEdgeStates();
 
             // 4. Debug / observe system
             printStats(t);
         }
     }
-
-   
 }
