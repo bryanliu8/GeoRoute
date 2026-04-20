@@ -33,6 +33,27 @@ public class FlowAllocator{
             }
         }
     }
+    //convergence
+    private boolean hasConverged(double epsilon){
+        for (Vertex v : graph.getVertices()) {
+            for (Edge e : graph.getNeighbors(v)) {
+                double diff = Math.abs(e.getFlow() - e.getPreviousFlow());
+                if (diff > epsilon) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    //smoothing
+    private void applySmoothing(double lambda) {
+        for (Vertex v : graph.getVertices()){
+            for (Edge e : graph.getNeighbors(v)){
+                e.applySmoothing(lambda);
+            }
+        }
+    }
+
     //Logit based flow assignment Lite-ver (yet to use logit formula)
     private void assignFlow(Demand d) {
         Vertex source = d.getSource();
@@ -53,7 +74,7 @@ public class FlowAllocator{
         paths.add(path1);
         paths.add(path2);
 
-        double alpha = 1.0;
+        double alpha = 5.0;
         List<Double> weights = new ArrayList<>();
         double totalWeight = 0;
         for (List<Vertex> path : paths) {
@@ -68,18 +89,8 @@ public class FlowAllocator{
             double portion = d.getAmount() * prob;
             pushFlow(paths.get(i), portion);
         }
+        System.out.println("AssignFlow called");
     }
-
-    //O(V+E) for each vertex and edge visited once
-    //design issue: reset every iteration. Static for now. 
-    //Later flow acummulation, gradual convergence, time-based simulation
-    /*private void resetFlows() {
-    for (Vertex v : graph.getVertices()) {
-        for (Edge e : graph.getNeighbors(v)) {
-            e.resetFlow();
-        }
-    }
-    }*/
 
     //debug method
     private void printStats(int iteration){
@@ -93,16 +104,33 @@ public class FlowAllocator{
     }
 
     // Main simulation entry
-    public void runSimulation(List<Demand> demands, int iterations) {
-        for (int t = 0; t < iterations; t++) {
-            //Assign demand based on demands
+    public void runSimulation(List<Demand> demands, int maxIterations) {
+        double lambda = 0.5;     //smoothing factor
+        double epsilon = 0.001;  //convergence threshold
+        for (int t = 0; t < maxIterations; t++){
+            for (Vertex v : graph.getVertices()) {
+                for (Edge e : graph.getNeighbors(v)) {
+                    e.savePreviousFlow();
+                }
+            }
+            for (Vertex v : graph.getVertices()) {
+                for (Edge e : graph.getNeighbors(v)) {
+                     e.resetFlow();
+                }
+            }
             for (Demand d : demands) {
                 assignFlow(d);
             }
-            // 3.Optional Update edge metrics  smoothing
-            //updateEdgeStates();
-
+            
+            if( t > 0){
+                applySmoothing(lambda);     
+            }
+                  
             printStats(t);
+            if (hasConverged(epsilon)) {
+                System.out.println("Converged at iteration " + t);
+                break;
+            }
         }
     }
 }
