@@ -74,7 +74,7 @@ public class FlowAllocator{
         paths.add(path1);
         paths.add(path2);
 
-        double alpha = 5.0;
+        double alpha = 1.0;
         List<Double> weights = new ArrayList<>();
         double totalWeight = 0;
         for (List<Vertex> path : paths) {

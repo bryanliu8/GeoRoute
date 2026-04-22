@@ -13,9 +13,12 @@ public class Graph {
         adjacencyList.putIfAbsent(v, new ArrayList<>());
     }
 
-    public void addEdge(Vertex source, Vertex target, double capacity) {
-        Edge e = new Edge(source, target, capacity);
-        adjacencyList.get(source).add(e);
+    public Edge addEdge(Vertex u, Vertex v, double capacity) {
+        Edge e = new Edge(u, v, capacity);
+        adjacencyList.putIfAbsent(u, new ArrayList<>());
+        adjacencyList.get(u).add(e);
+        return e;
+        //adjacencyList.get(u).add(e);
     }
 
     public List<Edge> getNeighbors(Vertex v) {

@@ -12,7 +12,9 @@ class Vertex{
         this.y = y;
         this.label = label;
     }
-
+    public int getId(){
+        return id;
+    }
     @Override //readable printStats
     public String toString(){
         return label;

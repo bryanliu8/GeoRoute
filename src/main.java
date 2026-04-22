@@ -14,18 +14,18 @@ public class main {
         graph.addVertex(C);
         graph.addVertex(D);
 
-        //Add edges (simple example)
-        graph.addEdge(A, B, 10);
-        graph.addEdge(B, C, 10);
-        graph.addEdge(A, D, 5);
-        graph.addEdge(D, C, 5);
+        Edge AB = graph.addEdge(A, B, 3);
+        Edge BC = graph.addEdge(B, C, 3);
+        Edge AD = graph.addEdge(A, D, 10);
+        Edge DC = graph.addEdge(D, C, 10);
+
+        AD.setFreeFlowTime(1.3);
+        DC.setFreeFlowTime(1.3);
 
         List<Demand> demands = new ArrayList<>();
         demands.add(new Demand(A, C, 3.0));
 
         FlowAllocator allocator = new FlowAllocator(graph);
-
-        //Run simulation
-        allocator.runSimulation(demands, 3);
+        allocator.runSimulation(demands, 5);
     }
 }

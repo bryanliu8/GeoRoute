@@ -10,7 +10,6 @@ class Edge{
     private double freeFlowTime;
     private double smoothedTravelTime;
     private double previousFlow;
-    private double newFlow;
 
     public Edge(Vertex source, Vertex target, double capacity) {
         this.source = source;
@@ -19,6 +18,9 @@ class Edge{
         this.flow = 0;
         this.freeFlowTime = 1.0;
         this.previousFlow = 0.0;
+    }
+    public void setFreeFlowTime(double t) {
+        this.freeFlowTime = t;
     }
     public Vertex getTarget(){
         return target;
