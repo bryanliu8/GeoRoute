@@ -34,6 +34,9 @@ class Edge{
     public double getPreviousFlow(){
         return previousFlow;
     }
+    public double getCapacity() { return capacity; }
+    public double getFreeFlowTime() { return freeFlowTime; }
+    
     public void updateFlow(double f){
         flow += f; //cap needed in congestion
     }

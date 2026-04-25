@@ -1,0 +1,12 @@
+# Vertices
+VERTEX,id,x,y,label
+VERTEX,1,0,0,A
+VERTEX,2,0,0,B
+
+# Edges
+EDGE,sourceId,targetId,capacity,freeFlowTime
+EDGE,1,2,10,1.0
+
+# Demands
+DEMAND,sourceId,targetId,amount
+DEMAND,1,3,10.0

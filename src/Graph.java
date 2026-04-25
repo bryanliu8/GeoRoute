@@ -41,6 +41,36 @@ public class Graph {
         }
         return null;
     }
+    //Generate 100 x 100 grid
+    public static Graph generateGridGraph(int rows, int cols) {
+        Graph graph = new Graph();
+
+        Vertex[][] grid = new Vertex[rows][cols];
+        int id = 1;
+        //vertices
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                Vertex v = new Vertex(id++, i, j, "(" + i + "," + j + ")");
+                grid[i][j] = v;
+                graph.addVertex(v);
+            }
+        }
+        //Edges
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                //to the right
+                if (j + 1 < cols) {
+                    graph.addEdge(grid[i][j], grid[i][j + 1], 10);
+                }
+                //to the down neighbor
+                if (i + 1 < rows) {
+                    graph.addEdge(grid[i][j], grid[i + 1][j], 10);
+                }
+            }
+        }
+        return graph;
+    }
+
 
     //straight up Dijkstra Goal: 2-3 paths
     public List<Vertex> findPath(Vertex start, Vertex end){

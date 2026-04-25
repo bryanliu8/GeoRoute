@@ -29,7 +29,9 @@ public class FlowAllocator{
 
             Edge e = graph.getEdge(u, v);
             if (e != null) {
+                //System.out.println("Before update: " + e.getFlow());
                 e.updateFlow(amount);
+                //System.out.println("After update: " + e.getFlow());
             }
         }
     }
@@ -105,7 +107,7 @@ public class FlowAllocator{
 
     // Main simulation entry
     public void runSimulation(List<Demand> demands, int maxIterations) {
-        double lambda = 0.5;     //smoothing factor
+        double lambda = 0.2;     //smoothing factor
         double epsilon = 0.001;  //convergence threshold
         for (int t = 0; t < maxIterations; t++){
             for (Vertex v : graph.getVertices()) {
@@ -115,15 +117,17 @@ public class FlowAllocator{
             }
             for (Vertex v : graph.getVertices()) {
                 for (Edge e : graph.getNeighbors(v)) {
-                     e.resetFlow();
+                    e.resetFlow();
                 }
             }
+    
             for (Demand d : demands) {
                 assignFlow(d);
             }
-            
-            if( t > 0){
-                applySmoothing(lambda);     
+            for (Vertex v : graph.getVertices()) {
+                for (Edge e : graph.getNeighbors(v)) {
+                    e.applySmoothing(lambda);
+                }
             }
                   
             printStats(t);
