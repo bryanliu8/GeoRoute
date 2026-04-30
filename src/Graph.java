@@ -82,7 +82,7 @@ public class Graph {
             dist.put(v, Double.POSITIVE_INFINITY); //dist[v] = infinity 
        }
        dist.put(start, 0.0);
-       PriorityQueue<Vertex> pq = new PriorityQueue<>(Comparator.comparingDouble(dist::get));
+       PriorityQueue<Vertex> pq = new PriorityQueue<>(Comparator.comparingDouble(v -> dist.getOrDefault(v, Double.POSITIVE_INFINITY)));
         pq.add(start);
 
         // 3. While PQ not empty: 

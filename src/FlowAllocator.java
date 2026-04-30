@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class FlowAllocator{
@@ -66,7 +67,7 @@ public class FlowAllocator{
         Vertex alt = null;
         for (Edge e : graph.getNeighbors(source)) {
             Vertex candidate = e.getTarget();
-            if (!candidate.equals(path1.get(1))) {
+            if (path1.size() > 1 && !candidate.equals(path1.get(1))) {
                 alt = candidate;
                 break;
             }
@@ -76,12 +77,16 @@ public class FlowAllocator{
         paths.add(path1);
         paths.add(path2);
 
-        double alpha = 1.0;
+        double alpha = 0.1;
+        List<Double> costs = new ArrayList<>();
+        for (List<Vertex> path : paths){
+            costs.add(computePathCost(path));
+        }
+        double minCost = Collections.min(costs);
         List<Double> weights = new ArrayList<>();
         double totalWeight = 0;
-        for (List<Vertex> path : paths) {
-            double cost = computePathCost(path);
-            double w = Math.exp(-alpha * cost);
+        for (double cost: costs) {
+            double w = Math.exp(-alpha * (cost - minCost));
             weights.add(w);
             totalWeight += w;
         }
